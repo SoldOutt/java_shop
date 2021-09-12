@@ -1,0 +1,37 @@
+*{
+	margin:  0;
+	padding : 0;
+	box-sizing: border-box;
+}
+body{
+
+}
+header{
+	padding: 10px 50px;
+	color: #0066FF;
+	border-bottom: 1px solid #ccc;
+}
+.container{
+	padding:  10px 50px;
+}
+.container h2{
+	color: #0066FF;
+	margin-bottom: 10px;
+}
+.form_group{
+	margin-bottom: 20px;
+}
+.form_group label{
+	display: block;
+}
+.form_group input,.form_group textarea{
+	width: 400px;
+	padding : 5px 15px;
+	font-size: 18px;
+}
+form button{
+	padding: 10px 20px;
+	background-color: #0066FF;
+	outline: none;
+	border: none;
+}
