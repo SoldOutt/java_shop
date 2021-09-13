@@ -3,6 +3,7 @@ package MyProject.form.controller.user;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,8 +24,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import MyProject.form.dto.UserContact;
+import MyProject.form.entities.Blog;
 import MyProject.form.entities.Contact;
 import MyProject.form.entities.Product;
+import MyProject.form.service.BlogService;
 import MyProject.form.service.ContactService;
 import MyProject.form.service.ProductService;
 
@@ -34,16 +37,18 @@ public class form extends BaseController {
 	private ContactService contactService;
 	@Autowired 
 	private ProductService productService;
-	
+	@Autowired BlogService blogService;
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String home(final ModelMap model, final HttpServletRequest req, final HttpServletResponse res)
 			throws IOException {
 			List<Product> productJava = new ArrayList<Product>();
 			List<Product> productHot = new ArrayList<Product>();
-			productJava = productService.findByCategory(21);
+			List<Blog> blogs = blogService.findAll();
+//			productJava = productService.findByCategory(21);
 			productHot = productService.findProductHot();
 			model.addAttribute("productJava", productJava);
 			model.addAttribute("productHot", productHot);
+			model.addAttribute("blogs", blogs);
 		return "user/index";
 	}
 
@@ -81,6 +86,7 @@ public class form extends BaseController {
 // 200 <-> thanh cong
 // 500 <-> khong thanh cong
 		
+		contact.setCreateDate(new Date());
 		contactService.saveOrUpdate(contact);
 		jsonResult.put("code", 200);
 		jsonResult.put("message", contact);

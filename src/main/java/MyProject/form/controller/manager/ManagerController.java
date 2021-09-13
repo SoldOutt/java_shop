@@ -26,11 +26,13 @@ import org.springframework.web.multipart.MultipartFile;
 import MyProject.form.dto.Cart;
 import MyProject.form.dto.CartItem;
 import MyProject.form.dto.ProductSearch;
+import MyProject.form.entities.Blog;
 import MyProject.form.entities.Category;
 import MyProject.form.entities.Contact;
 import MyProject.form.entities.Product;
 import MyProject.form.entities.SaleOrder;
 import MyProject.form.entities.SaleOrderProduct;
+import MyProject.form.service.BlogService;
 import MyProject.form.service.CategoryService;
 import MyProject.form.service.ContactService;
 import MyProject.form.service.ProductService;
@@ -49,6 +51,8 @@ public class ManagerController extends BaseController {
 	@Autowired 
 	private SaleOrderService salseOrderService;
 	@Autowired
+	private BlogService blogService;
+	@Autowired 
 	private SaleOrderProductService saleOrderProductService;
 	@RequestMapping(value = { "/admin/category" }, method = RequestMethod.GET)
 	public String home(final ModelMap model, 
@@ -61,16 +65,7 @@ public class ManagerController extends BaseController {
 		return "manager/category";
 	}
 
-//	@RequestMapping(value = {"/admin/product"}, method = RequestMethod.GET)
-//	public String managerProduct(final ModelMap model,
-//			final HttpServletRequest req, 
-//			final HttpServletResponse res)
-//		throws IOException{
-//		List<Product> products = new ArrayList<Product>();
-//		products = productService.findAll();
-//		model.addAttribute("products",products);
-//		return "manager/product";
-//	}
+
 	
 	@RequestMapping(value = {"/admin/contact"}, method = RequestMethod.GET)
 	public String managerContact(final ModelMap model, final HttpServletRequest req, final HttpServletResponse res)
@@ -80,60 +75,7 @@ public class ManagerController extends BaseController {
 		model.addAttribute("contacts",contacts);
 		return "manager/contact";
 	}
-//	@RequestMapping(value = {"/admin/addProduct"}, method = RequestMethod.GET)
-//	public String addProduct(final ModelMap model, final HttpServletRequest req, final HttpServletResponse res)
-//		throws IOException{
-//		Product product = new Product();
-//		List<Category> categories = new ArrayList<Category>();
-//		categories = categoriesService.findAll();
-//		model.addAttribute("categories", categories);
-//		model.addAttribute("product", product);
-//		return "manager/addProduct";
-//	}
-//	@RequestMapping(value = {"/admin/addProduct"}, method = RequestMethod.POST)
-//	public String addProductSave(final ModelMap model,
-//			final HttpServletRequest req,
-//			final HttpServletResponse res,
-//			@ModelAttribute("product") Product product,
-//			@RequestParam("avatarImage") MultipartFile avatar,
-//			@RequestParam("productImagess") MultipartFile[] productImages)
-//		throws IOException{
-//		System.out.println(product.getId());
-//		if(product.getId()==null)productService.save(product,avatar,productImages);
-//		else {
-//			productService.edit(product, avatar, productImages);
-//		}
-//		return "redirect:product";
-//	}
-	
-//	@RequestMapping(value = {"/removeProduct/{id}"}, method = RequestMethod.POST)
-//	public ResponseEntity<Map<String, Object>> removeProduct(final ModelMap model,
-//			final HttpServletRequest req,
-//			final HttpServletResponse res,
-//			@PathVariable("id") int id)
-//		throws IOException{
-//		System.out.println(id);
-//		productService.deleteById(id);
-//		
-//		Map<String, Object> jsonResult = new HashMap<String, Object>();
-//		jsonResult.put("code", 200);
-//		jsonResult.put("status", "TC");
-//		jsonResult.put("message", "Da xoa thanh cong id" + id);
-//		
-//		return ResponseEntity.ok(jsonResult);
-//	}
-//	
-//	@RequestMapping(value = { "/admin/edit-products/{productId}" }, method = RequestMethod.GET) // -> action
-//	public String editProduct(final ModelMap model,
-//			final HttpServletRequest request,
-//			final HttpServletResponse response,
-//			@PathVariable("productId") int productId)
-//			throws IOException {
-//			Product product= productService.getById(productId);
-//			List<Category> categories = categoriesService.findAll();
-//			model.addAttribute("categories", categories);
-//			model.addAttribute("product", product);
-//				return "manager/addProduct";}
+
 	@RequestMapping(value = {"/admin/addCategory"}, method = RequestMethod.GET)
 	public String addCategory(final ModelMap model, final HttpServletRequest req, final HttpServletResponse res)
 		throws IOException{
@@ -152,6 +94,7 @@ public class ManagerController extends BaseController {
 		categoriesService.addCategory(category);
 		return "redirect:/admin/category";
 	}
+
 	@RequestMapping(value = { "/admin/edit-category/{categoryId}" }, method = RequestMethod.GET) // -> action
 	public String editCategory(final ModelMap model,
 			final HttpServletRequest request,
@@ -170,28 +113,14 @@ public class ManagerController extends BaseController {
 			final HttpServletResponse response,
 			@PathVariable("categoryId") int categoryId)
 			throws IOException {
-			categoriesService.deleteById(categoryId);
+			categoriesService.removeById(categoryId);
 			Map<String,Object> jsonResult = new HashMap<String,Object>();
 			jsonResult.put("code",200);
 			jsonResult.put("status","TC");
 			
 			return ResponseEntity.ok(jsonResult);
 	}
-//	
-//	@RequestMapping(value = {"/admin/list-products"}, method = RequestMethod.GET)
-//	public String searchProduct(final ModelMap model,
-//			final HttpServletRequest req, 
-//			final HttpServletResponse res)
-//		throws IOException{
-//		String keyword = req.getParameter("keyword");
-//		ProductSearch ps = new ProductSearch();
-//		ps.setKeyword(keyword);
-//		ps.setPage(getCurrentPage(req));
-//		System.out.println(ps);
-//		model.addAttribute("products",productService.search(ps));
-//		return "manager/product";
-//	}
-//	
+
 	
 	@RequestMapping(value = {"/admin/sale_order"}, method = RequestMethod.GET)
 	public String saleOrder(final ModelMap model,
@@ -204,6 +133,54 @@ public class ManagerController extends BaseController {
 		return "manager/sale_order";
 	}
 	
+	@RequestMapping(value = {"/admin/addBlog"}, method = RequestMethod.GET)
+	public String addBlog(final ModelMap model, final HttpServletRequest req, final HttpServletResponse res)
+		throws IOException{
+		Blog blog = new Blog();
+		model.addAttribute("blog", blog);
+		return "manager/addBlog";
+	}
 	
-	
+	@RequestMapping(value = {"/admin/addBlog"}, method = RequestMethod.POST)
+	public String addProductSave(final ModelMap model,
+			final HttpServletRequest req,
+			final HttpServletResponse res,
+			@ModelAttribute("blog") Blog blog,
+			@RequestParam("avatarImage") MultipartFile avatar)
+		throws IOException{
+		System.out.println(blog.getId());
+		if(blog.getId()==null)blogService.save(blog,avatar);
+		else {
+			blogService.edit(blog, avatar);
+		}
+		return "redirect:blog";
+	}
+	@RequestMapping(value = {"/admin/editBlog/{blogSeo}"}, method = RequestMethod.GET)
+	public String editBlof(final ModelMap model,
+			final HttpServletRequest req,
+			final HttpServletResponse res,
+			@PathVariable("blogSeo") String blogSeo)
+		throws IOException{
+		Blog blog = blogService.findBySeo(blogSeo);
+		model.addAttribute("blog", blog)	;	
+		return "manager/addBlog";
+	}
+	@RequestMapping(value = {"/admin/blog"}, method = RequestMethod.GET)
+	public String getBlog(final ModelMap model, final HttpServletRequest req, final HttpServletResponse res)
+		throws IOException{
+		List<Blog> blogs = new ArrayList<Blog>();
+		blogs = blogService.findAll();
+		model.addAttribute("blogs", blogs);
+		
+		return "manager/blog";
+	}
+	@RequestMapping(value = {"/user/blog/{blogSeo}"}, method = RequestMethod.GET)
+	public String getBlogUser(final ModelMap model, final HttpServletRequest req, final HttpServletResponse res,@PathVariable("blogSeo") String blogSeo)
+		throws IOException{
+		 
+		Blog blog = blogService.findBySeo(blogSeo);
+		model.addAttribute("blog", blog);
+		
+		return "user/blog";
+	}
 }

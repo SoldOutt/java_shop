@@ -87,7 +87,7 @@ public class ProductManagerController extends BaseController {
 		}
 		@RequestMapping(value = {"/admin/addProduct"}, method = RequestMethod.GET)
 		public String addProduct(final ModelMap model, final HttpServletRequest req, final HttpServletResponse res)
-			throws IOException{
+			throws IOException{ 
 			Product product = new Product();
 			List<Category> categories = new ArrayList<Category>();
 			categories = categoriesService.findAll();

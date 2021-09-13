@@ -4,15 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.Table;
+//import javax.transaction.Transactional;
 import javax.transaction.Transactional;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 
 import MyProject.form.entities.BaseEntity;
-
+//import org.springframework.data.jpa.repository.Query;
 
 
 @Service
@@ -46,6 +49,21 @@ public abstract class BaseService<E extends BaseEntity> {
 		return (List<E>) entityManager.createNativeQuery("SELECT * FROM " + tbl.name() +" where " + field +" = "+num , clazz()).getResultList();
 	}
 	
+	
+	@Transactional
+	public void removeById(int id) {
+		Table tbl = clazz().getAnnotation(Table.class);
+		System.out.println(id);
+		String str="UPDATE " + tbl.name() + " SET status=0 " +" where id" + " = "+id;
+		System.out.println(str);
+		 entityManager.createNativeQuery(str);
+		
+	}
+//	@Modifying
+//	@org.springframework.data.jpa.repository.Query(value="UPDATE " + "tbl_category" + " SET status=0 " +" where id" + " = "+id)
+//	void removeById(int id);
+
+	
 		
 	@SuppressWarnings("unchecked")
 	public E findBySeo(String seo) {
@@ -53,6 +71,7 @@ public abstract class BaseService<E extends BaseEntity> {
 		System.out.println(tbl.name());
 		return (E) entityManager.createNativeQuery("SELECT * FROM " + tbl.name() +" where seo like '%" + seo + "%'", clazz()).getSingleResult();
 	}
+	
 	@Transactional
 	public E saveOrUpdate(E entity) {
 		if (entity.getId() == null || entity.getId() <= 0) {

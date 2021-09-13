@@ -66,7 +66,7 @@
 							name="detail_description" />
 					</div>
 					<div class="mb-3">
-						<label for="isHot" class="form-label">Is Hot </label>
+						<label for="isHot" class="form-label">Sản phẩm nổi bật ? </label>
 						<sf:checkbox path="isHot" id="isHot" name="isHot" />
 					</div>
 					<div class="mb-3">

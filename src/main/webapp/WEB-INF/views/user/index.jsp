@@ -148,29 +148,30 @@
 				</c:forEach>
 			</div>
 		</div>
-		<div class="product_offer container-fluid">
-			<div class=" mx-xl-5 pb-3 row">
-				<div class="col-md-6 col-sm-12 pl-4">
-					<div class="offer">
-						<img src="${base}/user/img/offer-1.jpg"
-							alt="${base}/user/img/offer-1.jpg">
-						<div class="offer_contain">
-							<p>save 20%</p>
-							<h3 class="offer_name">Spacial Offer</h3>
-							<button>Shop Now</button>
+		<div class="our-blog mt-5">
+			<div class="container">
+				<h3 class="decoration_center">OUR BLOG</h3>
+				<h2 class="text-center mb-5">Latest News & Articles</h2>
+				<div class="row">
+					<c:forEach items="${blogs}" var="blog">
+					
+					<div class="col-lg-4 col-sm-12">
+						<div class="blog_item">
+							<div class="blog_item-img">
+								<img src="${base}/uploads/${blog.blogImg}" alt="">
+								<div class="blog_item-img--time">
+									<p>01</p>
+									<strong>JAN</strong>
+									<p>2021</p>
+								</div>
+							</div>
+							<a href="/user/blog/${blog.seo}">${blog.title }</a>
+							<p>${blog.shortDescription}</p>
+							<div class="blog_item-inf"></div>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-6 col-sm-12 pl-4">
-					<div class="offer">
-						<img src="${base}/user/img/offer-2.jpg"
-							alt="${base}/user/img/offer-1.jpg">
-						<div class="offer_contain">
-							<p>save 20%</p>
-							<h3 class="offer_name">Spacial Offer</h3>
-							<button>Shop Now</button>
-						</div>
-					</div>
+					</c:forEach>
+
 				</div>
 			</div>
 		</div>
@@ -180,11 +181,11 @@
 	</div>
 	<!-- JavaScript Bundle with Popper -->
 	<jsp:include page="/WEB-INF/views/user/layout/js.jsp"></jsp:include>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		console.log("${productJava}")
 		console.log("${productHot}")
 		console.log()
-	</script>
+	</script> -->
 </body>
 
 </html>

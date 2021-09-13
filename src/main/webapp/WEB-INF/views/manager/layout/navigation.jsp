@@ -18,7 +18,9 @@
 			<li data_review='1'><a href="/admin/product">Quản lí sản phẩm</a></li>
 			<li data_review='10'><a href="/admin/addProduct">Thêm sản phẩm</a></li>
 			<li data_review='2'><a href="/admin/category">Quản lí danh mục</a></li>
-			<li data_review='2'><a href="">Quản lí đơn hàng</a></li>
+			<li data_review='2'><a href="/admin/sale_order">Quản lí đơn hàng</a></li>
+			<li data_review='2'><a href="/admin/category">Quản lí bài viết</a></li>
+			<li data_review='2'><a href="/admin/sale_order">Tạo bài viết</a></li>
 			<!-- <li data_review='2'><a href="">Quản lí danh mục</a></li> -->
 		</ul>
 	</div>

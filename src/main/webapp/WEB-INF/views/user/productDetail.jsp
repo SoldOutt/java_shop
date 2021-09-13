@@ -249,36 +249,7 @@
 
 
 
-	<jsp:include page="/WEB-INF/views/user/layout/nav.jsp"></jsp:include>
-	<div class="container">
-		<div class="product_detail">
-			<div class="row">
-				<div class="col-md-6 co-sm-12">
-					<div class="bx-Img">
-						<img
-							src="${pageContext.servletContext.contextPath}/uploads/${product.avatar}" />
-					</div>
-				</div>
-				<div class="col-md-6 co-sm-12">
-					<div class="detail_product">
-						<h3>${product.title}</h3>
-						<p>Giới thiệu : ${product.shortDescription}</p>
-						<p>
-							Price: <span
-								class="${ product.priceScale != undefine ? 'decoration-center':''}">
-								${product.price} </span>
-						</p>
-						<p>
-							Sale Price: <span> ${product.priceScale} </span>
-						</p>
-						<button class="btn btn-primary" onclick="addCart(${product.id},1)">Add
-							to cart</button>
-					</div>
-				</div>
-			</div>
-			<div class="product_description">${product.detailDescription}</div>
-		</div>
-	</div>
+	
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"

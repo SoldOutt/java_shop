@@ -2,7 +2,9 @@ package MyProject.form.controller.user;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,12 +49,13 @@ public class CartController extends BaseController {
 		String customerName = request.getParameter("customerName");
 		String customerAddress = request.getParameter("customerAddress");
 		String customerEmail = request.getParameter("customerEmail");
-
+		String customerPhone = request.getParameter("customerPhone");
 		// tạo hóa đơn
 		SaleOrder saleOrder = new SaleOrder();
 		saleOrder.setCustomerName(customerName);
 		saleOrder.setCustomerEmail(customerEmail);
 		saleOrder.setCustomerAddress(customerAddress);
+		saleOrder.setCustomerPhone(customerPhone);
 		saleOrder.setCode(String.valueOf(System.currentTimeMillis()));
 		if (getUserLogined() != null) {
 			saleOrder.setUserId(getUserLogined().getId());
@@ -73,6 +76,7 @@ public class CartController extends BaseController {
 
 		// Tinh tong tien
 		saleOrder.setTotal(totalOrder);
+		saleOrder.setCreateDate(new Date());
 		// lưu vào cơ sở dữ liệu
 		saleOrderService.saveOrUpdate(saleOrder);
 

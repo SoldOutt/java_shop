@@ -90,7 +90,7 @@
 						<div class="mb-3 form-group">
 							<label for="customerName" class="form-label">Tên của bạn
 							</label> <input type="text" class="form-control" id="customerName"
-								name="customerName" readonly value="${userLogined.username }">
+								name="customerName"  value="${userLogined.username }">
 
 						</div>
 						<div class="mb-3 form-group">
@@ -99,10 +99,16 @@
 								name="customerAddress" placeholder="nhap dia chi nhan">
 
 						</div>
+							<div class="mb-3 form-group">
+							<label for="customerAddress" class="form-label">Số điện thoại</label> <input
+								type="text" class="form-control" id="customerPhone"
+								name="customerPhone" placeholder="số điện thoại người nhận" value="${userLogined.phoneNumber }">
+
+						</div>
 						<div class="mb-3 form-group">
 							<label for="customerEmail" class="form-label">Email</label> <input
 								type="email" class="form-control" name="customerEmail"
-								id="customerEmail" readonly value="${userLogined.email }">
+								id="customerEmail"  value="${userLogined.email }">
 						</div>
 					</c:when>
 					<c:otherwise>
@@ -116,6 +122,13 @@
 							<label for="customerAddress" class="form-label">Địa chỉ</label> <input
 								type="text" class="form-control" id="customerAddress"
 								name="customerAddress" placeholder="nhap dia chi nhan">
+
+						</div>
+						</div>
+							<div class="mb-3 form-group">
+							<label for="customerAddress" class="form-label">Số điện thoại</label> <input
+								type="text" class="form-control" id="customerPhone"
+								name="customerPhone" placeholder="số điện thoại người nhận" ">
 
 						</div>
 						<div class="mb-3 form-group">
