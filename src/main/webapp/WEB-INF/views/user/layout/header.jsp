@@ -11,7 +11,7 @@
 			</div>
 			<div class="search">
 				<form action="">
-					<input type="text" id="search_input" name='keyword' placeholder="TÃ¬m kiáº¿m">
+					<input type="text" id="search_input" name='keyword' placeholder="Tìm kiếm">
 					<button>
 						<i class="fas fa-search"></i>
 					</button>

@@ -113,7 +113,9 @@ public class ManagerController extends BaseController {
 			final HttpServletResponse response,
 			@PathVariable("categoryId") int categoryId)
 			throws IOException {
-			categoriesService.removeById(categoryId);
+			Category category = categoriesService.getById(categoryId);
+			category.setStatus(false);
+			categoriesService.saveOrUpdate(category);
 			Map<String,Object> jsonResult = new HashMap<String,Object>();
 			jsonResult.put("code",200);
 			jsonResult.put("status","TC");

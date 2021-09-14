@@ -46,17 +46,30 @@ public abstract class BaseService<E extends BaseEntity> {
 	@SuppressWarnings("unchecked")
 	public List<E> findByInt(String field,int num) {
 		Table tbl = clazz().getAnnotation(Table.class);
+		System.out.println("SELECT * FROM " + tbl.name() +" where " + field +" = "+num);
 		return (List<E>) entityManager.createNativeQuery("SELECT * FROM " + tbl.name() +" where " + field +" = "+num , clazz()).getResultList();
 	}
+	@SuppressWarnings("unchecked")
+	public List<E> findAllByFeild(String field,int num) {
+		Table tbl = clazz().getAnnotation(Table.class);
+		System.out.println("SELECT * FROM " + tbl.name() + " WHERE status=1 and " + field +" = "+num);
+		return (List<E>) entityManager.createNativeQuery("SELECT * FROM " + tbl.name() + " WHERE status=1 and " + field +" = "+num, clazz()).getResultList();
+	}
 	
-	
+	@SuppressWarnings("unchecked")
+	public List<E> findAllByFeild(String field,String str) {
+		Table tbl = clazz().getAnnotation(Table.class);
+		
+		return (List<E>) entityManager.createNativeQuery("SELECT * FROM " + tbl.name() + " WHERE status=1 and " + field +" like '"+str+"'", clazz()).getResultList();
+	}
+	//Can giup do
 	@Transactional
 	public void removeById(int id) {
 		Table tbl = clazz().getAnnotation(Table.class);
 		System.out.println(id);
 		String str="UPDATE " + tbl.name() + " SET status=0 " +" where id" + " = "+id;
 		System.out.println(str);
-		 entityManager.createNativeQuery(str);
+		 entityManager.createNativeQuery(str,clazz());
 		
 	}
 //	@Modifying

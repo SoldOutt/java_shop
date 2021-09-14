@@ -3,7 +3,9 @@ package MyProject.form.controller.user;
 import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,15 +26,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import MyProject.form.entities.Contact;
+import MyProject.form.entities.SaleOrder;
+import MyProject.form.entities.SaleOrderProduct;
 import MyProject.form.entities.User;
+import MyProject.form.service.SaleOrderService;
 import MyProject.form.service.UserService;
+
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Controller
-public class AuthController {
+public class AuthController extends BaseController {
 	@Autowired
 	UserService userService;
-	
+	@Autowired
+	SaleOrderService saleOrderService;
 	@RequestMapping(value = { "/login" }, method = RequestMethod.GET)
 	public String getlogin(final ModelMap model, final HttpServletRequest req, final HttpServletResponse res)
 			throws IOException {
@@ -67,6 +76,21 @@ public class AuthController {
 //		userService.saveOrUpdate(user);
 		
 		return ResponseEntity.ok(jsonResult);
+	}
+	@RequestMapping(value = { "/profile" }, method = RequestMethod.GET)
+	public String profile(final ModelMap model, final HttpServletRequest req, final HttpServletResponse res)
+			throws IOException {
+		User user = new User();
+		Object userLogined = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if(userLogined != null && userLogined instanceof UserDetails)
+			user = (User) userLogined;
+		List<User> userr = userService.findAllByFeild("username", user.getUsername());
+		user = userr.get(0);
+		List<SaleOrder> saleOrders = new ArrayList<SaleOrder>();
+		saleOrders =saleOrderService.findAllByFeild("user_id", user.getId());
+		model.addAttribute("saleOrders", saleOrders);
+		
+		return "user/profile";
 	}
 }
 

@@ -33,13 +33,7 @@ public abstract class BaseController {
 		return roles;
 	}
 	
-	@ModelAttribute("isAdmin")
-	public boolean isAdmin() {
-		for(String role : roles()) {
-			if(role.equalsIgnoreCase("admin")) return true;
-		}
-		return false;
-	}
+	
 	
 	
 	@ModelAttribute("isLogined")
@@ -64,5 +58,16 @@ public abstract class BaseController {
 //	public String getUserLogined() {
 //		return "JavaWeb14";
 //	}
+	@ModelAttribute("isAdmin")
+	public boolean isAdmin() {
+//		for(String role : roles()) {
+//			if(role.equalsIgnoreCase("ADMIN")) return true;
+//		}
+//		return false;
+		User user = getUserLogined();
+		if(user.getUsername() == "admin")return true;
+		return false;
+		
+	}
 	
 }

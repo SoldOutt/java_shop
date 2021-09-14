@@ -18,12 +18,14 @@
 					<li class="nav-item" role="presentation">
 						<button class="nav-link active" id="home-tab" data-bs-toggle="tab"
 							data-bs-target="#home" type="button" role="tab"
-							aria-controls="home" aria-selected="true">Danh sách đơn hàng</button>
+							aria-controls="home" aria-selected="true">Danh sách đơn
+							hàng</button>
 					</li>
 					<li class="nav-item" role="presentation">
 						<button class="nav-link" id="profile-tab" data-bs-toggle="tab"
 							data-bs-target="#profile" type="button" role="tab"
-							aria-controls="profile" aria-selected="false">Đơn hàng đã xử lí</button>
+							aria-controls="profile" aria-selected="false">Đơn hàng
+							đã xử lí</button>
 					</li>
 					<li class="nav-item" role="presentation">
 						<button class="nav-link" id="contact-tab" data-bs-toggle="tab"
@@ -46,18 +48,19 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach  var="x" items="${saleOrders}" varStatus="loop">
+								<c:forEach var="x" items="${saleOrders}" varStatus="loop">
 									<tr data-id=${product.id }>
 										<th>${loop.index+1 }</th>
 										<td>${x.customerName }</td>
-										
+
 										<td>${x.customerAddress }</td>
 										<td>${x.customerPhone}</td>
 										<td>${x.total}</td>
-										<td><a class="btn btn-warning btnOpenForm"
-											href="/admin/edit-products/${x.code}">Sửa</a>
-											<button class="btn btn-danger"
-												onClick="deleteProduct(${x.code})">Xóa</button></td>
+										<td>
+											<button onClick="getDetailSaleOrder(${x.id})"
+												class="btn btn-primary mr-3">Xem chi tiết</button>
+											<button class="btn btn-success">Xử lí</button>
+										</td>
 									</tr>
 								</c:forEach>
 
@@ -159,13 +162,13 @@
 		function getDetailSaleOrder(id){
 			
 			let data = {
-					productId: id, // lay theo id	
+					id: id, // lay theo id	
     		};
-    		
+    		console.log(id)
 			// $ === jQuery
 			// json == javascript object
 			jQuery.ajax({
-				url : "/manager/saleorder_detail",
+				url : "/manager/saleorder_detail/"+id,
 				type : "post",
 				contentType : "application/json",
 				data : JSON.stringify(data),

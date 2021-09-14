@@ -199,17 +199,20 @@ public class CartController extends BaseController {
 		return total;
 	}
 
-	@RequestMapping(value = { "/manager/saleorder_detail" }, method = RequestMethod.POST)
+	@RequestMapping(value = { "/manager/saleorder_detail/{id}" }, method = RequestMethod.POST)
 	public ResponseEntity<Map<String, Object>> showDetailSaleOrder(final ModelMap model,
-			final HttpServletRequest request, final HttpServletResponse response, @RequestBody CartItem newItem) {
+			final HttpServletRequest request, final HttpServletResponse response,@PathVariable("id") String id) {
 
+		System.out.println(id);
+//		String id = request.getParameter("id");
 		List<SaleOrderProduct> saleOrderProducts = new ArrayList<SaleOrderProduct>();
-		saleOrderProducts = saleOrderProductService.findByInt("saleorder_id", newItem.getProductId());
-
+		
+		saleOrderProducts = saleOrderProductService.findAllByFeild("saleorder_id",Integer.parseInt(id));
+		System.out.println(1);
 		// trả kết quả
 		Map<String, Object> jsonResult = new HashMap<String, Object>();
 		jsonResult.put("code", 200);
-		jsonResult.put("status", "TC");
+		jsonResult.put("status", "TC"); 
 		jsonResult.put("saleOrderProducts", saleOrderProducts);
 
 //		session.setAttribute("totalItems", getTotalItems(request));

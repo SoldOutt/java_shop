@@ -25,11 +25,11 @@ public class SecureConf extends WebSecurityConfigurerAdapter {
 
 		//các request kiểu: "/admin/" phải đăng nhập
 		.antMatchers("/admin/**").hasAuthority("ADMIN") //chi tai khoan  admin , co thuoc phuonng thuc authenticed cho ca admin va user
-
+		.antMatchers("/profile").authenticated()
 		.and()
 		
 		//cấu hình trang đăng nhập
-		.formLogin().loginPage("/login").loginProcessingUrl("/perform_login").defaultSuccessUrl("/user/product", true)
+		.formLogin().loginPage("/login").loginProcessingUrl("/perform_login").defaultSuccessUrl("/profile", true)
 		.failureUrl("/login?login_error=true")
 		.permitAll()
 
