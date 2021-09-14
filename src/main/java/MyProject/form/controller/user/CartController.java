@@ -213,7 +213,7 @@ public class CartController extends BaseController {
 		Map<String, Object> jsonResult = new HashMap<String, Object>();
 		jsonResult.put("code", 200);
 		jsonResult.put("status", "TC"); 
-		jsonResult.put("saleOrderProducts", saleOrderProducts);
+//		jsonResult.put("saleOrderProducts", saleOrderProducts);
 
 //		session.setAttribute("totalItems", getTotalItems(request));
 		return ResponseEntity.ok(jsonResult);
