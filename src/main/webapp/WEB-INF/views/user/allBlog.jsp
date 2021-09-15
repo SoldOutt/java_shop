@@ -15,7 +15,7 @@
 	
 	<div class="px-5 mt-5">
 		<c:forEach items="${blogs}" var="blog">
-			<div class="blog_item">
+			<div class="blog_itemm">
 				<h2>${blog.title}</h2>
 				<div class="blog_item_contain">
 					<div class="blog_item-img">

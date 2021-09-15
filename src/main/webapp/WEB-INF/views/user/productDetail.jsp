@@ -15,13 +15,10 @@
 	<div class="detail_product px-xl-5 mt-5">
 		<div class="row">
 			<div class="col-lg-5 detail_product-img">
-				<img src="${base}/uploads/${product.avatar}" alt="anh san pham">
-				<button class="detail_product-img--next">
-					<i class="fas fa-angle-right"></i>
-				</button>
-				<button class="detail_product-img--prev">
-					<i class="fas fa-angle-left"></i>
-				</button>
+
+				<img id="zoom_01" src="${base}/uploads/${product.avatar}"
+					alt="anh san pham"
+					data-zoom-image="${base}/uploads/${product.avatar}" />
 			</div>
 			<div class="col-lg-7 detail_product-infor">
 				<h3 class="product_name">${product.title }</h3>
@@ -34,7 +31,7 @@
 					<h4>${product.priceScale}</h4>
 				</div>
 				<div class="product_description">${product.shortDescription }</div>
-				
+
 				<div class="product_cart">
 					<div class="product_number">
 						<button class="product_reduce">-</button>
@@ -55,15 +52,13 @@
 			<div class="product_review-cat">
 				<ul>
 					<li data-review="0" class="active">Description</li>
-					
+
 					<li data-review="1">Reviews(<span>1</span>)
 					</li>
 				</ul>
 				<div class="product_review-tab">
-					<div class="active">
-						${product.detailDescription }
-					</div>
-					
+					<div class="active">${product.detailDescription }</div>
+
 					<div class="">
 						<div class="row">
 							<div class="col-lg-6">
@@ -230,16 +225,9 @@
 	<jsp:include page="/WEB-INF/views/user/layout/js.jsp"></jsp:include>
 
 
+	<script async='async' src='https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js' />
 
 
-	
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
-		crossorigin="anonymous"></script>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-		crossorigin="anonymous"></script>
 
 	<script type="text/javascript">
         	function addCart() {
@@ -274,5 +262,28 @@
 				});
         	}
         </script>
+	<script>
+
+    //<![CDATA[
+
+    window.addEventListener('load', function() {
+
+        $("#zoom_01").elevateZoom({
+
+            zoomWindowFadeIn: 500,
+
+            zoomWindowFadeOut: 500,
+
+            lensFadeIn: 500,
+
+            lensFadeOut: 500
+
+        });
+
+    })
+
+    //]]>
+
+</script>
 </body>
 </html>

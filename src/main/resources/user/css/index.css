@@ -1851,12 +1851,12 @@ footer h4 a {
 
 /*Blog*/
 
-.blog_item{
+.blog_itemm{
 	padding: 15px 0;
 	border-bottom: 1px solid #000;
 	
 }
-.blog_item h2{
+.blog_itemm h2{
 	font-size: 1.5rem;
 	color: #000;
 }
