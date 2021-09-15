@@ -222,10 +222,11 @@
 	<jsp:include page="/WEB-INF/views/user/layout/footer.jsp"></jsp:include>
 	</div>
 	<!-- JavaScript Bundle with Popper -->
+	<script async='async' src='https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js' />
 	<jsp:include page="/WEB-INF/views/user/layout/js.jsp"></jsp:include>
 
 
-	<script async='async' src='https://cdnjs.cloudflare.com/ajax/libs/elevatezoom/3.0.8/jquery.elevatezoom.min.js' />
+	
 
 
 
@@ -270,13 +271,11 @@
 
         $("#zoom_01").elevateZoom({
 
-            zoomWindowFadeIn: 500,
+            zoomType: "lens",
 
-            zoomWindowFadeOut: 500,
+            lensShape: "round",
 
-            lensFadeIn: 500,
-
-            lensFadeOut: 500
+            lensSize: 200
 
         });
 

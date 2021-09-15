@@ -29,12 +29,8 @@
 				
 				<p>Vai trò: ${userLogined.username=='admin'? '<a href="admin/product">Người quản trị</a>':'Người dùng' }</p>
 			</div>
-			<div class="description-profile">
-				Front-end | Security Researcher | CSS Warrior | <a
-					href="https://twitter.com/bullgit" title="bullgit"><strong>@bullgit</strong></a>
-				| I love to create small things for the internet!
-			</div>
-			<h2 >Danh sách đơn hàng đã đặt</h2>
+			
+			<h2 class="mx-3">Danh sách đơn hàng đã đặt</h2>
 			<table class="table">
 				<thead>
 					<tr>
