@@ -204,4 +204,13 @@ public class ManagerController extends BaseController {
 		
 		return "user/blog";
 	}
+	@RequestMapping(value = {"/blog"}, method = RequestMethod.GET)
+	public String getBlogs(final ModelMap model, final HttpServletRequest req, final HttpServletResponse res)
+		throws IOException{
+		 
+		List<Blog> blogs = new ArrayList<Blog>();
+		blogs = blogService.findAll();
+		model.addAttribute("blogs", blogs);
+		return "user/allBlog";
+	}
 }

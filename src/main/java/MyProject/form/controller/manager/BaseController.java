@@ -65,7 +65,7 @@ public abstract class BaseController {
 //		}
 //		return false;
 		User user = getUserLogined();
-		if(user.getUsername() == "admin")return true;
+//		if(user.getUsername() == "admin")return true;
 		return false;
 		
 	}

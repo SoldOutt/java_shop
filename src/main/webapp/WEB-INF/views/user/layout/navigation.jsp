@@ -19,10 +19,10 @@
 		</div>
 		<div class="nav_bar-list col-lg-9 col-md-8 col-sm-6">
 			<ul>
-				<li><a href="/">Home</a></li>
-				<li><a href="/user/product">Shop</a></li>
-				<li><a href="">Page</a></li>
-				<li><a href="/user/contact">Contact</a></li>
+				<li><a href="/">Trang chủ</a></li>
+				<li><a href="/user/product">Sản phẩm</a></li>
+				<li><a href="/blog">Tin tức</a></li>
+				<li><a href="/user/contact">Liên hệ</a></li>
 			</ul>
 			<div class="user_product">
 
