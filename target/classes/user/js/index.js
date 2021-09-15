@@ -204,3 +204,32 @@ function changeCartItem(idProduct, quanlity) {
 	});
 }
 
+//change cart view 
+function addOneToCart(idProduct, quanlity) {
+	// javascript object.
+	// data la du lieu ma day len action cua controller
+	let data = {
+		productId: idProduct, // lay theo id
+		quanlity: quanlity, // lay theo id
+	};
+	console.log(data)
+	// $ === jQuery
+	// json == javascript object
+	jQuery.ajax({
+		url: "/cart/add",
+		type: "post",
+		contentType: "application/json",
+		data: JSON.stringify(data),
+
+		dataType: "json", // kieu du lieu tra ve tu controller la json
+
+
+		success: function(jsonResult) {
+			console.log(jsonResult)
+			document.querySelector("#totalCartItem").textContent = jsonResult.totalItems
+		},
+		error: function(jqXhr, textStatus, errorMessage) { // error callback 
+		}
+	});
+}
+

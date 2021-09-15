@@ -34,24 +34,7 @@
 					<h4>${product.priceScale}</h4>
 				</div>
 				<div class="product_description">${product.shortDescription }</div>
-				<div class="product_size">
-					<span>Sizes:</span> <input type="radio" id="size-1" name="size"><label
-						for="size-1">XS</label> <input type="radio" id="size-2"
-						name="size"><label for="size-2">S</label> <input
-						type="radio" id="size-3" name="size"><label for="size-3">M</label>
-					<input type="radio" id="size-4" name="size"><label
-						for="size-4">L</label> <input type="radio" id="size-5" name="size"><label
-						for="size-5">XL</label>
-				</div>
-				<div class="product_color">
-					<span>Color:</span> <input type="radio" id="color-1" name="size"><label
-						for="color-1">Red</label> <input type="radio" id="color-2"
-						name="size"><label for="color-2">Blue</label> <input
-						type="radio" id="color-3" name="size"><label for="color-3">Green</label>
-					<input type="radio" id="color-4" name="size"><label
-						for="color-4">Black</label> <input type="radio" id="color-5"
-						name="size"><label for="color-5">White</label>
-				</div>
+				
 				<div class="product_cart">
 					<div class="product_number">
 						<button class="product_reduce">-</button>

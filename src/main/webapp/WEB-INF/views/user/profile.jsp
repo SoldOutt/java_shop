@@ -22,22 +22,19 @@
 					src="http://gravatar.com/avatar/288ce55a011c709f4e17aef7e3c86c64?s=200"
 					alt="jofpin" />
 			</div>
-			<button>Follow</button>
+			<!-- <button>Follow</button> -->
 			<div class="user-profile-data">
 				<h1>${userLogined.username }</h1>
 				<p>${userLogined.email }</p>
-				<p>Vai trò: ${userLogined.username=='admin'? 'Người quản trị':'Người dùng' }</p>
+				
+				<p>Vai trò: ${userLogined.username=='admin'? '<a href="admin/product">Người quản trị</a>':'Người dùng' }</p>
 			</div>
 			<div class="description-profile">
 				Front-end | Security Researcher | CSS Warrior | <a
 					href="https://twitter.com/bullgit" title="bullgit"><strong>@bullgit</strong></a>
 				| I love to create small things for the internet!
 			</div>
-			<ul class="data-user">
-				<li><a><strong>3390</strong><span>Posts</span></a></li>
-				<li><a><strong>718</strong><span>Followers</span></a></li>
-				<li><a><strong>239</strong><span>Following</span></a></li>
-			</ul>
+			<h2 >Danh sách đơn hàng đã đặt</h2>
 			<table class="table">
 				<thead>
 					<tr>
@@ -76,6 +73,7 @@
 				title="José Pino">@jofpin</a>
 		</h4>
 	</footer>
+	<jsp:include page="/WEB-INF/views/user/layout/js.jsp"></jsp:include>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"

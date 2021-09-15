@@ -118,7 +118,9 @@ public class ProductManagerController extends BaseController {
 				@PathVariable("id") int id)
 			throws IOException{
 			System.out.println(id);
-			productService.deleteById(id);
+			Product product = productService.getById(id);
+			product.setStatus(false);
+			productService.saveOrUpdate(product);
 			
 			Map<String, Object> jsonResult = new HashMap<String, Object>();
 			jsonResult.put("code", 200);

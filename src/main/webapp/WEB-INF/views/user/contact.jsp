@@ -218,6 +218,7 @@
 							 jQuery("#subject").val('')
 							 jQuery("#message").val('')
 					console.log(jsonResult)
+					window.alert('Cảm ơn bạn đã liên hệ với chúng tôi!!')
 				},
 				error : function(jqXhr, textStatus, errorMessage) { // error callback 
 				}

@@ -34,7 +34,7 @@ public abstract class BaseService<E extends BaseEntity> {
 	@SuppressWarnings("unchecked")
 	public List<E> findAll() {
 		Table tbl = clazz().getAnnotation(Table.class);
-		return (List<E>) entityManager.createNativeQuery("SELECT * FROM " + tbl.name() + " WHERE status=1", clazz()).getResultList();
+		return (List<E>) entityManager.createNativeQuery("SELECT * FROM " + tbl.name() + " WHERE status=1 order by created_date desc", clazz()).getResultList();
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -42,7 +42,11 @@ public abstract class BaseService<E extends BaseEntity> {
 		Table tbl = clazz().getAnnotation(Table.class);
 		return (List<E>) entityManager.createNativeQuery("SELECT * FROM " + tbl.name() + " WHERE status=0", clazz()).getResultList();
 	}
-	
+	@SuppressWarnings("unchecked")
+	public List<E> findAlll() {
+		Table tbl = clazz().getAnnotation(Table.class);
+		return (List<E>) entityManager.createNativeQuery("SELECT * FROM " + tbl.name() + " order by created_date desc", clazz()).getResultList();
+	}
 	@SuppressWarnings("unchecked")
 	public List<E> findByInt(String field,int num) {
 		Table tbl = clazz().getAnnotation(Table.class);
@@ -56,6 +60,12 @@ public abstract class BaseService<E extends BaseEntity> {
 		return (List<E>) entityManager.createNativeQuery("SELECT * FROM " + tbl.name() + " WHERE status=1 and " + field +" = "+num, clazz()).getResultList();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<E> findAlllByFeild(String field,int num) {
+		Table tbl = clazz().getAnnotation(Table.class);
+		System.out.println("SELECT * FROM " + tbl.name() + " WHERE " + field +" = "+num);
+		return (List<E>) entityManager.createNativeQuery("SELECT * FROM " + tbl.name() + " WHERE " + field +" = "+num, clazz()).getResultList();
+	}
 	@SuppressWarnings("unchecked")
 	public List<E> findAllByFeild(String field,String str) {
 		Table tbl = clazz().getAnnotation(Table.class);

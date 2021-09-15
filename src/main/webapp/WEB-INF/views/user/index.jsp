@@ -85,7 +85,7 @@
 		<div class="categories">
 			<div class="container-fluid pt-5 mb-4">
 				<h2 class="mr-3 mx-xl-5 categories_title">
-					<span>Danh Má»¥c Sáº£n Pháº©m</span>
+					<span>Danh mục sản phẩm</span>
 				</h2>
 			</div>
 			<div class="categories_list row mx-xl-5 pb-3">
@@ -108,7 +108,7 @@
 		<div class="featured_product">
 			<div class="container-fluid pt-5 mb-4">
 				<h2 class="mr-3 mx-xl-5 categories_title">
-					<span>Sáº£n pháº©m Äáº·c sáº¯c</span>
+					<span>Sản phẩm nổi bật</span>
 				</h2>
 			</div>
 			<div class="product_list row mx-xl-5 pb-3">
@@ -123,15 +123,15 @@
 
 
 								<div class="product_action">
-									<a href="/user/detailProduct/${product.id}" class="action"><i
+									<a style="cursor: pointer;" onClick="addOneToCart(${product.id},1)" class="action"><i
 										class="fas fa-shopping-cart"></i></a> <a href="#" class="action"><i
 										class="far fa-heart"></i></a> <a href="#" class="action"><i
-										class="fas fa-sync-alt"></i></a> <a href="#" class="action"><i
+										class="fas fa-sync-alt"></i></a> <a href="/user/detailProduct/${product.seo}" class="action"><i
 										class="fas fa-search"></i></a>
 								</div>
 							</div>
 							<div class="product_infor pb-3">
-								<a href="/user/detailProduct/${product.id}" class="product_name">${product.title }</a>
+								<a href="/user/detailProduct/${product.seo}" class="product_name">${product.title }</a>
 								<div class="product_price mt-3">
 									<div class="new_price">${product.priceScale }</div>
 									<div class="old_price">${product.price}</div>

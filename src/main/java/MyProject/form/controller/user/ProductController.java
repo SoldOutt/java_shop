@@ -81,14 +81,15 @@ public class ProductController extends BaseController {
 		model.addAttribute("totalPage",totalPage);
 		return "user/product";
 	}
-	@RequestMapping(value = {"user/detailProduct/{idProduct}"},method = RequestMethod.GET)
+	@RequestMapping(value = {"user/detailProduct/{productSeo}"},method = RequestMethod.GET)
 	public String productDetail(final ModelMap model, 
 			final HttpServletRequest req,
 			final HttpServletResponse res,
-			@PathVariable("idProduct") int productId)
+			@PathVariable("productSeo") String productSeo)
 			throws IOException{
 		Product product = new Product();
-		product = productService.getById(productId);
+		product = productService.findBySeo(productSeo);
+//		product = productService.getById(productId);
 		model.addAttribute("product", product);
 		return "user/productDetail";
 	}

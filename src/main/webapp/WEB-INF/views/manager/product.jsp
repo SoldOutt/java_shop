@@ -60,11 +60,7 @@ td img {
 							data-bs-target="#profile" type="button" role="tab"
 							aria-controls="profile" aria-selected="false">Sản phẩm đã xóa</button>
 					</li>
-					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="contact-tab" data-bs-toggle="tab"
-							data-bs-target="#contact" type="button" role="tab"
-							aria-controls="contact" aria-selected="false">Gì đó</button>
-					</li>
+					
 				</ul>
 				<div class="tab-content" id="myTabContent">
 					<div class="tab-pane fade show active" id="home" role="tabpanel"
@@ -198,7 +194,7 @@ td img {
 
 
 	<!-- JavaScript Bundle with Popper -->
-	
+	<jsp:include page="/WEB-INF/views/user/layout/js.jsp"></jsp:include>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
@@ -209,7 +205,9 @@ td img {
 		
 	<script type="text/javascript">
         	function deleteProduct(id,event) {
-        		console.log(event)
+        		
+        		const isConfirm = window.confirm('Bạn chắc chắn muốn xóa sản phẩm này ??')
+        		if(!isConfirm)return
         		
 				let data = {
 					id: id, // lay theo id

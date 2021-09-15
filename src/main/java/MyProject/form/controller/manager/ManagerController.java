@@ -3,6 +3,7 @@ package MyProject.form.controller.manager;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,6 +92,7 @@ public class ManagerController extends BaseController {
 		throws IOException{
 		System.out.println(category.getName());
 		category.setSeo(category.getName().trim());
+		category.setCreateDate(new Date());
 		categoriesService.addCategory(category);
 		return "redirect:/admin/category";
 	}
@@ -130,11 +132,28 @@ public class ManagerController extends BaseController {
 			final HttpServletResponse res)
 		throws IOException{
 		List<SaleOrder> saleOrders = new ArrayList<SaleOrder>();
+		List<SaleOrder> saleOrdersDelete = new ArrayList<SaleOrder>();
 		saleOrders = salseOrderService.findAll();
+		saleOrdersDelete = salseOrderService.findAllDelete();
 		model.addAttribute("saleOrders", saleOrders);
+		model.addAttribute("saleOrdersDelete", saleOrdersDelete);
 		return "manager/sale_order";
 	}
-	
+	@RequestMapping(value = { "/admin/removeSaleOrder/{saleOrderId}" }, method = RequestMethod.POST) // -> action
+	public ResponseEntity<Map<String, Object>> removeSaleOrder(final ModelMap model,
+			final HttpServletRequest request,
+			final HttpServletResponse response,
+			@PathVariable("saleOrderId") int saleOrderId)
+			throws IOException {
+			SaleOrder saleOrder = salseOrderService.getById(saleOrderId);
+			saleOrder.setStatus(false);
+			salseOrderService.saveOrUpdate(saleOrder);
+			Map<String,Object> jsonResult = new HashMap<String,Object>();
+			jsonResult.put("code",200);
+			jsonResult.put("status","TC");
+			
+			return ResponseEntity.ok(jsonResult);
+	}
 	@RequestMapping(value = {"/admin/addBlog"}, method = RequestMethod.GET)
 	public String addBlog(final ModelMap model, final HttpServletRequest req, final HttpServletResponse res)
 		throws IOException{

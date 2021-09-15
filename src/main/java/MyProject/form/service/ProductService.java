@@ -128,7 +128,7 @@ public class ProductService extends BaseService<Product> {
 //		
 		// chi lay san pham chua xoa
 //			sql += " and p.status=1 ";
-		
+		sql += " order by created_date desc";
 		return executeNativeSqlWithPaging(sql, searchModel.getPage());
 	}
 	public List<Product> searchAll(ProductSearch searchModel) {
@@ -149,7 +149,7 @@ public class ProductService extends BaseService<Product> {
 //		
 		// chi lay san pham chua xoa
 //			sql += " and p.status=1 ";
-		
+		sql += " order by created_date desc";
 		return executeNativeSql(sql);
 	}
 

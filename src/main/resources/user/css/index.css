@@ -1739,7 +1739,7 @@ a {
   margin-top: -10em;
   box-shadow: 0 0 .1em rgba(0, 0, 0, 0.35);
 }
-.profile-user-page button {
+/* .profile-user-page button {
 	position: absolute;
   font-size: 13px;
   font-weight: bold;
@@ -1757,7 +1757,7 @@ a {
   background: #51a7e0;
   transition: background .2s ease-in-out;
   border: 1px solid #2487c9;
-}
+} */
 .profile-user-page .user-profile-data, .profile-user-page .description-profile {
   text-align: center;
   padding: 0 1.5em; 

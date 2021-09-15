@@ -87,7 +87,7 @@ public class AuthController extends BaseController {
 		List<User> userr = userService.findAllByFeild("username", user.getUsername());
 		user = userr.get(0);
 		List<SaleOrder> saleOrders = new ArrayList<SaleOrder>();
-		saleOrders =saleOrderService.findAllByFeild("user_id", user.getId());
+		saleOrders =saleOrderService.findAlllByFeild("user_id", user.getId());
 		model.addAttribute("saleOrders", saleOrders);
 		
 		return "user/profile";

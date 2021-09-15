@@ -86,6 +86,7 @@
 						 jQuery("input[name='passwordrg").val('')
 						  jQuery("input[name='confirmPassword").val('')
 				console.log(jsonResult)
+				window.alert('Chúc mừng bạn đã đăng kí thành công!!!')
 				
 			},
 			error : function(jqXhr, textStatus, errorMessage) { // error callback 

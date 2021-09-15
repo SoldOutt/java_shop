@@ -101,7 +101,7 @@ td img {
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 		crossorigin="anonymous"></script>
-		
+		<jsp:include page="/WEB-INF/views/user/layout/js.jsp"></jsp:include>
 	<script type="text/javascript">
         	function deleteProduct(id,event) {
         		console.log(event)

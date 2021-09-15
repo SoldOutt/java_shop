@@ -147,18 +147,29 @@
 
 
 											<div class="product_action">
-												<a href="detailProduct/${product.id}" class="action"><i
+												<a style="cursor: pointer;"
+													onClick="addOneToCart(${product.id},1)" class="action"><i
 													class="fas fa-shopping-cart"></i></a> <a href="#"
 													class="action"><i class="far fa-heart"></i></a> <a href="#"
 													class="action"><i class="fas fa-sync-alt"></i></a> <a
-													href="#" class="action"><i class="fas fa-search"></i></a>
+													href="detailProduct/${product.seo}" class="action"><i
+													class="fas fa-search"></i></a>
 											</div>
 										</div>
 										<div class="product_infor pb-3">
-											<a href="detailProduct/${product.id}" class="product_name">${product.title }</a>
+											<a href="detailProduct/${product.seo}" class="product_name">${product.title }</a>
 											<div class="product_price mt-3">
-												<div class="new_price">${product.priceScale }</div>
-												<div class="old_price">${product.price}</div>
+												<c:choose>
+													<c:when test="${product.priceScale!=null}">
+														<div class="new_price">${product.priceScale }</div>
+														<div class="old_price">${product.price}</div>
+													</c:when>
+													<c:otherwise>
+														<div class="new_price">${product.price }</div>
+
+													</c:otherwise>
+												</c:choose>
+
 											</div>
 											<div class="rating mt-2">
 												<i class="fas fa-star"></i> <i class="fas fa-star"></i> <i
@@ -198,7 +209,7 @@
 					</div> --%>
 					<jsp:include page="/WEB-INF/views/user/layout/pagination.jsp"></jsp:include>
 				</div>
-				
+
 			</div>
 		</div>
 		<jsp:include page="/WEB-INF/views/user/layout/footer.jsp"></jsp:include>
