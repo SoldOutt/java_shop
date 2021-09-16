@@ -10,7 +10,7 @@
 		</a>
 	</div>
 	<div class="search">
-		<form action="">
+		<form action="/user/product">
 			<input type="text" id="search_input" name='keyword'
 				placeholder="Tìm kiếm">
 			<button>

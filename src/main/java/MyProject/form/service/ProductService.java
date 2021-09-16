@@ -105,6 +105,7 @@ public class ProductService extends BaseService<Product> {
 		Date x = new Date();
 		product.setCreateDate(productOnDb.getCreateDate());
 		product.setUpdateDate(x);
+		product.setSeo(productOnDb.getSeo());
 		// lưu vào database
 		return super.saveOrUpdate(product);
 	}

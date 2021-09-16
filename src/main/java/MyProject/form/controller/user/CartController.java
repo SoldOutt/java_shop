@@ -166,8 +166,10 @@ public class CartController extends BaseController {
 			Product productInDb = productService.getById(newItem.getProductId());
 
 			newItem.setProductName(productInDb.getTitle());
-			newItem.setPriceUnit(productInDb.getPrice());
-
+			if(productInDb.getPriceScale()==null)newItem.setPriceUnit(productInDb.getPrice());
+			else {
+				newItem.setPriceUnit(productInDb.getPriceScale());
+			}
 			cart.getCartItems().add(newItem);
 		}
 
